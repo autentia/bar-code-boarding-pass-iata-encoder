@@ -24,9 +24,9 @@ public class PrimarySegment {
 
 	private static final int maximumVariableFieldSize = 255;
 
-	private MandatoryItemsUnique mandatoryItemsUnique;
+	private final MandatoryItemsUnique mandatoryItemsUnique;
 
-	private MandatoryItemsRepeated mandatoryItemsRepeated;
+	private final MandatoryItemsRepeated mandatoryItemsRepeated;
 
 	private ConditionalItemsUnique conditionalItemsUnique;
 
@@ -43,7 +43,7 @@ public class PrimarySegment {
 				.createConditionalItemsUnique();
 		this.conditionalItemsRepeated = new ConditionalItemsRepeated.ConditionalItemsRepeatedBuilder()
 				.createConditionalItemsRepeated();
-		this.additionalInformation = new AdditionalInformation("");
+		this.additionalInformation = new AdditionalInformation(StringUtils.EMPTY);
 		numberOfSegments = 1;
 	}
 

@@ -29,9 +29,9 @@ public class Item {
 	private int size;
 
 	@SuppressWarnings("unused")
-	private int number;
+	private final int number;
 
-	private PaddingType padding;
+	private final PaddingType padding;
 
 	public Item(String original, int size, int number, PaddingType padding) {
 		this.original = original;
@@ -42,20 +42,21 @@ public class Item {
 
 	public String getEncoded() {
 		if (padding == PaddingType.Number && StringUtils.isBlank(original)) {
-			return StringUtils.leftPad("", size).substring(0, size);
+			return StringUtils.leftPad(StringUtils.EMPTY, size).substring(0, size);
 		}
 
 		if (padding == PaddingType.Number) {
 			return StringUtils.leftPad(original, size, "0").substring(0, size);
 		}
 
-		if (padding == PaddingType.NumberFollowedByAlpha && StringUtils.isBlank(original))
-			return StringUtils.leftPad(original, size - 1, "0").substring(0, size - 1) + " ";
+		if (padding == PaddingType.NumberFollowedByAlpha && StringUtils.isBlank(original)) {
+			return StringUtils.leftPad(StringUtils.EMPTY, size - 1, "0").substring(0, size - 1) + " ";
+		}
 
 		if (padding == PaddingType.NumberFollowedByAlpha) {
-			int lastPosition = original.length() - 1;
+			final int lastPosition = original.length() - 1;
 			if (StringUtils.isAlpha(original.substring(lastPosition))) {
-				String number = original.substring(0, lastPosition);
+				final String number = original.substring(0, lastPosition);
 				return StringUtils.leftPad(number, size - 1, "0").substring(0, size - 1)
 						+ original.substring(lastPosition);
 			} else {
@@ -66,7 +67,7 @@ public class Item {
 			return StringUtils.rightPad(original, size).substring(0, size);
 		}
 
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	public void setValue(String original) {

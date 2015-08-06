@@ -24,7 +24,7 @@ public class SecondarySegment {
 
 	private static final int maximumVariableFieldSize = 255;
 
-	private MandatoryItemsRepeated mandatoryItemsRepeated;
+	private final MandatoryItemsRepeated mandatoryItemsRepeated;
 
 	private ConditionalItemsRepeated conditionalItemsRepeated;
 
@@ -34,7 +34,7 @@ public class SecondarySegment {
 		this.mandatoryItemsRepeated = mandatoryItemsRepeated;
 		this.conditionalItemsRepeated = new ConditionalItemsRepeated.ConditionalItemsRepeatedBuilder()
 				.createConditionalItemsRepeated();
-		this.additionalInformation = new AdditionalInformation("");
+		this.additionalInformation = new AdditionalInformation(StringUtils.EMPTY);
 	}
 
 	public void addConditionalItemsRepeated(ConditionalItemsRepeated conditionalItemsRepeated) {
